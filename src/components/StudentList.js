@@ -1,12 +1,14 @@
-import React from 'react'
-import { Container, Table } from 'react-bootstrap'
+import React from "react";
+import { Card, Container, Table } from "react-bootstrap";
 
 export default function StudentList() {
   return (
     <div className="my-3">
-        <Container>
-        <Table striped bordered hover>
-      <thead>
+      <Container>
+        <Card.Header><h3>Students List</h3></Card.Header>
+        <Card.Body>
+          <Table striped bordered hover>
+          <thead>
         <tr>
           <th>Student Id</th>
           <th>Student Name</th>
@@ -30,8 +32,9 @@ export default function StudentList() {
           <td>Italiya</td>
         </tr>
       </tbody>
-    </Table>
-        </Container>
+          </Table>
+        </Card.Body>
+      </Container>
     </div>
-  )
+  );
 }
