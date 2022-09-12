@@ -3,8 +3,9 @@ import { Card, Container, Table, ButtonGroup, Button } from "react-bootstrap";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {Link} from 'react-router-dom'
 
-export default function StudentList() {
+export default function StudentList(props) {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function StudentList() {
     axios.delete("http://localhost:8080/student/"+studentId)
     .then(response=> {
       if (response.data !== null){
-        alert("Record Deleted Successfully");
+        props.showAlert("success", "Record deleted successfully")
         setStudents(students.filter(student=>student.id!==studentId));
       }
     })
@@ -57,9 +58,11 @@ export default function StudentList() {
                   <td>{student.address}</td>
                   <td>
                     <ButtonGroup>
-                      <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faEdit}> Edit </FontAwesomeIcon></Button>{ ' '}
+                      <Link to={"/student/"+student.id}><Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faEdit}> Edit </FontAwesomeIcon></Button></Link>{ ' '}
                       <Button size="sm" variant="outline-danger" onClick={deleteStudent.bind(this,student.id)}><FontAwesomeIcon icon={faTrash}> Delete </FontAwesomeIcon></Button>
-                      {/* <Button size="sm" variant="outline-danger" onClick={()=>deleteStudent(student.id)}><FontAwesomeIcon icon={faTrash}> Delete </FontAwesomeIcon></Button> */}
+                      {
+                        
+                      }
                     </ButtonGroup>
                   </td>
                 </tr>
